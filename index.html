@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Budget Tracker</title>
+    <!-- Link to Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Link to custom CSS file -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+    <div class="bg-white p-8 rounded-lg shadow-xl w-full max-w-md">
+        <h1 class="text-3xl font-bold text-gray-800 mb-6 text-center">Budget Tracker</h1>
+
+        <!-- Summary Section: Total Income, Expenses, Balance -->
+        <div class="grid grid-cols-3 gap-4 mb-6 text-center">
+            <div class="bg-green-100 p-3 rounded-lg shadow-sm">
+                <p class="text-sm text-green-700 font-semibold">Income</p>
+                <span id="totalIncomeDisplay" class="text-xl font-bold text-green-800">$0.00</span>
+            </div>
+            <div class="bg-red-100 p-3 rounded-lg shadow-sm">
+                <p class="text-sm text-red-700 font-semibold">Expenses</p>
+                <span id="totalExpensesDisplay" class="text-xl font-bold text-red-800">$0.00</span>
+            </div>
+            <div class="bg-blue-100 p-3 rounded-lg shadow-sm">
+                <p class="text-sm text-blue-700 font-semibold">Balance</p>
+                <span id="balanceDisplay" class="text-xl font-bold text-blue-800">$0.00</span>
+            </div>
+        </div>
+
+        <!-- Transaction Input Form -->
+        <div class="mb-6 border-t pt-6 border-gray-200">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Add New Transaction</h2>
+            <div class="mb-4">
+                <label for="transactionDescription" class="block text-gray-700 text-sm font-semibold mb-2">Description:</label>
+                <input type="text" id="transactionDescription" placeholder="e.g., Monthly Salary, Groceries"
+                       class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+            </div>
+            <div class="mb-4">
+                <label for="transactionAmount" class="block text-gray-700 text-sm font-semibold mb-2">Amount:</label>
+                <input type="number" id="transactionAmount" placeholder="e.g., 1200.00"
+                       class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+            </div>
+            <div class="mb-6">
+                <label for="transactionType" class="block text-gray-700 text-sm font-semibold mb-2">Type:</label>
+                <select id="transactionType"
+                        class="shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    <option value="income">Income</option>
+                    <option value="expense">Expense</option>
+                </select>
+            </div>
+            <button id="addTransactionBtn"
+                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline transition duration-300 ease-in-out transform hover:scale-105">
+                Add Transaction
+            </button>
+        </div>
+
+        <!-- Transaction List and Filters -->
+        <div>
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Transaction History</h2>
+            <div class="flex justify-center space-x-2 mb-4">
+                <button id="showAllBtn" class="filter-btn bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded-lg transition duration-200 ease-in-out active-filter">
+                    All
+                </button>
+                <button id="showIncomeBtn" class="filter-btn bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded-lg transition duration-200 ease-in-out">
+                    Income
+                </button>
+                <button id="showExpensesBtn" class="filter-btn bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-4 rounded-lg transition duration-200 ease-in-out">
+                    Expenses
+                </button>
+            </div>
+            <div id="transactionList" class="space-y-3 mb-6">
+                <!-- Transactions will be dynamically added here -->
+            </div>
+
+            <!-- Clear All Button -->
+            <button id="clearAllBtn"
+                    class="mt-6 w-full bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline transition duration-300 ease-in-out transform hover:scale-105">
+                Clear All Data
+            </button>
+        </div>
+
+        <!-- Message Box for alerts -->
+        <div id="messageBox" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center hidden">
+            <div class="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full text-center">
+                <p id="messageText" class="text-gray-800 text-lg mb-4"></p>
+                <button id="messageBoxCloseBtn" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-lg">
+                    OK
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Link to custom JavaScript file -->
+    <script src="script.js"></script>
+</body>
+</html>
